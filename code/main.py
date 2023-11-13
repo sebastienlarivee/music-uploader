@@ -33,7 +33,3 @@ description.new_description()
 
 
 # Upload to DistroKid with selenium
-
-# Upload to Youtube (ON ICE FOR NOW)
-# uploader = YouTubeUploader(album_folder_path)
-# uploader.upload_video()
