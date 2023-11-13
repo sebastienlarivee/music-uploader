@@ -2,9 +2,10 @@ resources/albums/*
 resources/pngs/*
 resources/wavs/*
 webdriver/*
-!webdriver\put_webdriver_here.txt
+!webdriver/put_webdriver_here.txt
 !resources/pngs/put_pngs_here.txt
 !resources/wavs/put_wavs_here.txt
 !resources/albums/.gitkeep
 test.py
 code/__pycache__/*
+**/.DS_Store
