@@ -1,0 +1,5 @@
+resources/available.json
+resources/used.json
+resources/albums/*
+resources/pngs/*
+resources/wavs/*
