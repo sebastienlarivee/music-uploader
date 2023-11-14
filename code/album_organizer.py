@@ -60,41 +60,41 @@ class AlbumOrganizer:
             return dst  # Return the path to the moved and renamed png file
         else:
             raise FileNotFoundError("No png files found in the pngs folder.")
-        
+
     def add_length_metadata(self):
-        metadata_file = os.path.join(self.album_folder, 'metadata.json')
+        metadata_file = os.path.join(self.album_folder, "metadata.json")
 
         # Check if metadata file exists
         if not os.path.exists(metadata_file):
-            raise FileNotFoundError('Metadata file not found.')
+            raise FileNotFoundError("Metadata file not found.")
 
         # Load existing metadata
-        with open(metadata_file, 'r') as file:
+        with open(metadata_file, "r") as file:
             metadata = json.load(file)
 
         # Ensure TRACKS exists and has 12 entries
-        tracks = metadata.get('TRACKS', [])
+        tracks = metadata.get("TRACKS", [])
         if len(tracks) < 12:
-            raise ValueError('TRACKS in metadata file does not have 12 entries.')
+            raise ValueError("TRACKS in metadata file does not have 12 entries.")
 
         # Get the length of each track
         lengths = []
         for index, track in enumerate(tracks, start=1):
-            track_file = os.path.join(self.album_folder, f'{index} {track}.wav')
+            track_file = os.path.join(self.album_folder, f"{index} {track}.wav")
             if not os.path.exists(track_file):
-                raise FileNotFoundError(f'Track file not found: {track_file}')
+                raise FileNotFoundError(f"Track file not found: {track_file}")
 
-            with wave.open(track_file, 'rb') as wav_file:
+            with wave.open(track_file, "rb") as wav_file:
                 frames = wav_file.getnframes()
                 rate = wav_file.getframerate()
                 length_seconds = frames / float(rate)
                 lengths.append(round(length_seconds, 2))
 
         # Update metadata with LENGTH
-        metadata['LENGTH'] = lengths
+        metadata["LENGTH"] = lengths
 
         # Write updated metadata back to file
-        with open(metadata_file, 'w') as file:
+        with open(metadata_file, "w") as file:
             json.dump(metadata, file, indent=4)
 
 
