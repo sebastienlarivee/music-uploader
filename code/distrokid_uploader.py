@@ -5,7 +5,7 @@ import time
 import os
 
 
-class DistroKidNavigator:
+class DistroKidUploader:
     def __init__(self, webdriver_path, email, password):
         self.webdriver_path = webdriver_path
         self.driver = None
@@ -57,20 +57,11 @@ class DistroKidNavigator:
 
         self.login()
 
-        upload_music = self.driver.find_element(
-            By.XPATH, '//button[text()="Upload music"]'
-        )  # let's see if this works
-        upload_music.click()
 
-        check_snap = self.driver.find_element(By.ID, "chksnap")
+"""         check_snap = self.driver.find_element(By.ID, "chksnap")
         check_snap.click()
 
         for albums in os.listdir(self.main_folder):
             album = os.path.join(self.main_folder, albums)
             if not os.path.isfile(album):
-                self.upload_album(album=album)
-
-
-# Usage:
-# navigator = DistroKidNavigator(webdriver_path='path/to/webdriver')
-# navigator.navigate_to_distrokid()
+                self.upload_album(album=album) """

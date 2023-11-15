@@ -6,6 +6,5 @@ webdriver/*
 !resources/pngs/put_pngs_here.txt
 !resources/wavs/put_wavs_here.txt
 !resources/albums/.gitkeep
-test.py
-code/__pycache__/*
+**/__pycache__/
 **/.DS_Store
