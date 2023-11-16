@@ -54,6 +54,7 @@ class VideoCreator:
         video_clip = image_clip.set_audio(concatenated_audio)
 
         # Write the result to a file, specifying fps and audio bitrate
+        print("Rendering video...")
         video_clip.write_videofile(
             self.output_path,
             fps=1,
@@ -66,5 +67,5 @@ class VideoCreator:
 
 
 # Usage:
-# video_creator = VideoCreator(r"C:\path")
+# video_creator = VideoCreator(folder/path)
 # video_creator.create_video()

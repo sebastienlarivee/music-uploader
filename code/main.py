@@ -1,32 +1,34 @@
-from image_tools import *
-from metadata_manager import *
-from album_organizer import *
-from image_tools import *
-from video_creator import *
-from yt_description import *
+from metadata_manager import MetadataManager
+from album_organizer import AlbumOrganizer
+from image_tools import ImageTools
+from video_creator import VideoCreator
+from yt_description import YTDescription
 
-# Specify folder that contains /wavs, /pngs, available.json, and used.json
-main_folder_path = "resources"
 
-# Create folder for the new album and its metadata
-manager = MetadataManager(main_folder_path)
-album_folder_path = manager.create_metadata_folder()
+def main():
+    main_folder_path = "resources"
 
-# Transfer .wav and .png files into album folder and rename accordingly
-organizer = AlbumOrganizer(main_folder_path, album_folder_path)
-rect_image_path = organizer.organize()
-organizer.add_length_metadata()
+    # Create folder for the new album and its metadata
+    manager = MetadataManager(main_folder_path)
+    album_folder_path = manager.create_metadata_folder()
 
-# Create a square and thumbnail version of the .png
-cropper = ImageCropper(rect_image_path, 1080)
-cropper.save_cropped_image_same_location()
-thumbnail = ImageResizer(rect_image_path)
-thumbnail.save_resized_image_same_location()
+    # Transfer .wav and .png files into album folder and rename accordingly
+    organizer = AlbumOrganizer(main_folder_path, album_folder_path)
+    rect_image_path = organizer.organize()
+    organizer.add_length_metadata()
 
-# Create video for Youtube
-video_creator = VideoCreator(album_folder_path)
-video_creator.create_video()
+    # Create a square and thumbnail version of the .png
+    square_and_thumbnail = ImageTools(rect_image_path, square_size=1080, max_mb=2)
+    square_and_thumbnail.make_square_and_thumbnail()
 
-# Generate Youtube description + chapters -> automatically copy to clipboard
-description = YTDescription(album_folder_path)
-description.new_description()
+    # Render video for YouTube
+    video_creator = VideoCreator(album_folder_path)
+    video_creator.create_video()
+
+    # Generate YouTube description + chapters -> automatically copy to clipboard
+    description = YTDescription(album_folder_path)
+    description.new_description()
+
+
+if __name__ == "__main__":
+    main()

@@ -32,6 +32,7 @@ class MetadataManager:
         return [f"{title} {numeral}" for numeral in roman_numerals]
 
     def create_metadata_folder(self):
+        print("Selecting names...")
         available_data = self._read_json(self.available_path)
         titles = available_data["TITLES"][:3]
         date = available_data["DATES"][0]
@@ -46,7 +47,7 @@ class MetadataManager:
         )
 
         metadata = {
-            "TITLE": f"{titles[0]}",  # assuming you also want the first title to have a roman numeral
+            "TITLE": f"{titles[0]}",
             "TRACKS": roman_title_instances,
             "DATE": date,
         }
@@ -59,7 +60,6 @@ class MetadataManager:
 
         return new_folder_path
 
-
-# Usage example:
-# manager = MetadataManager("/path/to/your/folder")
-# new_folder_path = manager.create_metadata_folder()
+        # Usage example:
+        # manager = MetadataManager("/path/to/your/folder")
+        # new_folder_path = manager.create_metadata_folder()

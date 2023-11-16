@@ -10,6 +10,7 @@ class AlbumOrganizer:
         self.album_folder = album_folder
 
     def organize(self):
+        print("Moving and renaming files...")
         wav_folder = os.path.join(self.main_folder, "wavs")
         png_folder = os.path.join(self.main_folder, "pngs")
         metadata_file = os.path.join(self.album_folder, "metadata.json")
@@ -62,6 +63,7 @@ class AlbumOrganizer:
             raise FileNotFoundError("No png files found in the pngs folder.")
 
     def add_length_metadata(self):
+        print("Fetching track lengths...")
         metadata_file = os.path.join(self.album_folder, "metadata.json")
 
         # Check if metadata file exists
@@ -74,7 +76,7 @@ class AlbumOrganizer:
 
         # Ensure TRACKS exists and has 12 entries
         tracks = metadata.get("TRACKS", [])
-        if len(tracks) < 12:
+        if len(tracks) < 12:  # REWORK THIS CHECK
             raise ValueError("TRACKS in metadata file does not have 12 entries.")
 
         # Get the length of each track
