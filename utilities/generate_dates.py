@@ -19,6 +19,7 @@ def save_mondays_thursdays_to_json(year, file_path):
         json.dump(data, json_file, indent=4)
 
 
-# Example usage
-file_path = r"resources\available.json"  # Replace with your file path
-save_mondays_thursdays_to_json(2023, file_path)
+if __name__ == "__main__":
+    year = 2023
+    file_path = r"resources\available.json"
+    save_mondays_thursdays_to_json(year, file_path)
