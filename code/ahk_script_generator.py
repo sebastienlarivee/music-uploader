@@ -41,12 +41,12 @@ class AHKScriptGenerator:
             return
 
         ahk_script_content = "^j::\n\n"
+        ahk_script_content += "    SetKeyDelay, 200\n\n"
         ahk_script_content += "    Send, {Tab}\n"
-        ahk_script_content += "    Sleep, 200\n"
         ahk_script_content += f"    Send, {len(self.tracks)}\n"
-        ahk_script_content += "    Sleep, 200\n"
+        ahk_script_content += "    Sleep, 2000\n"
         ahk_script_content += "    Send, {Tab 2}\n"
-        ahk_script_content += "    Send, Ambient Archive\n"  # Artist name
+        ahk_script_content += "    SendInput, Ambient Archive\n"  # Artist name
         ahk_script_content += "    Sleep, 2000\n"
         ahk_script_content += "    Send, {Tab 3}\n"
         ahk_script_content += f"    Send, {self.date[1]}\n"  # Month
@@ -54,25 +54,31 @@ class AHKScriptGenerator:
         ahk_script_content += f"    Send, {self.date[2]}\n"  # Day
         ahk_script_content += "    Send, {Tab}\n"
         ahk_script_content += f"    Send, {self.date[0]}\n"  # Year
-        ahk_script_content += "    Sleep, 200\n"
-        ahk_script_content += "    Send, {Tab 9}\n"
+        ahk_script_content += "    Send, {Tab 10}\n"
         ahk_script_content += "    Send, electronic\n"  # Genre
+        ahk_script_content += "    Sleep, 1000\n"
         ahk_script_content += "    Send, {Tab}\n"
         ahk_script_content += "    Send, chill out\n"  # Sub-genre
         ahk_script_content += "    Send, {Tab 2}\n"
         ahk_script_content += "    Send, {Enter}\n"
-        ahk_script_content += f"    Send, {self.folder_path}\{self.title}_square.png\n"
+        ahk_script_content += "    Sleep, 2000\n"
+        ahk_script_content += (
+            f"    SendInput, {self.folder_path}\{self.title}_square.png\n"
+        )
         ahk_script_content += "    Send, {Enter}\n"
+        ahk_script_content += "    Sleep, 2000\n"
         ahk_script_content += "    Send, {Tab}\n"
-        ahk_script_content += f"    Send, {self.title}\n"
+        ahk_script_content += f"    SendInput, {self.title}\n"
         ahk_script_content += "    Send, {Tab}\n\n"
 
         for track in self.tracks:
-            ahk_script_content += f"    Send, {track}\n"
+            ahk_script_content += f"    SendInput, {track}\n"
             ahk_script_content += "    Send, {Tab 3}\n"
             ahk_script_content += "    Send, {Enter}\n"
-            ahk_script_content += f"    Send, {self.folder_path}\{self.tracks.index(track) + 1} {track}.wav\n"
+            ahk_script_content += "    Sleep, 2000\n"
+            ahk_script_content += f"    SendInput, {self.folder_path}\{self.tracks.index(track) + 1} {track}.wav\n"
             ahk_script_content += "    Send, {Enter}\n"
+            ahk_script_content += "    Sleep, 2000\n"
             ahk_script_content += "    Send, {Tab 11}\n"
             ahk_script_content += "    Send, {Down}\n"
             ahk_script_content += "    Send, {Tab 3}\n\n"
