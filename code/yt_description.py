@@ -21,7 +21,6 @@ class YTDescription:
         # Extracting the year from the 'DATE' key
         year = datetime.strptime(self.metadata["DATE"], "%Y-%m-%d").year
 
-        # Provided description text with placeholders for TITLE and YEAR
         description_header = (
             f"Perfect for background music, meditation, focus, study, relaxation, work, reading, gaming, or introspective moments. "
             f"Explore the boundless beauty and mystery of the cosmos with this Sci-Fi Ambient Space Soundtrack. 𝗜𝗳 𝘆𝗼𝘂'𝗿𝗲 𝗲𝗻𝗷𝗼𝘆𝗶𝗻𝗴 𝘁𝗵𝗲 𝗺𝗶𝘅 𝗽𝗹𝗲𝗮𝘀𝗲 𝗟𝗶𝗸𝗲 𝗮𝗻𝗱 𝗦𝘂𝗯𝘀𝗰𝗿𝗶𝗯𝗲!💕"
@@ -63,7 +62,6 @@ class YTDescription:
         pyperclip.copy(text)
         print("Description copied to clipboard.")
 
-
-# Usage example:
-# processor = YTDescription('path_to_folder')
-# processor.new_description()
+    # Usage example:
+    # processor = YTDescription('path_to_folder')
+    # processor.new_description()

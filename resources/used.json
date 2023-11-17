@@ -43,7 +43,12 @@
         "Illuminant",
         "Spectral Clouds",
         "Radiant Canopy",
-        "Sundew"
+        "Sundew",
+        "Lunar Glow",
+        "Twilight Shadows",
+        "Mars Gale"
     ],
-    "DATES": []
+    "DATES": [
+        "2023-11-20"
+    ]
 }

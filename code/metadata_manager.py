@@ -1,5 +1,6 @@
 import json
 import os
+import shutil
 
 
 class MetadataManager:
@@ -31,6 +32,13 @@ class MetadataManager:
         roman_numerals = ["I", "II", "III", "IV"]
         return [f"{title} {numeral}" for numeral in roman_numerals]
 
+    def _copy_utility_file(self, source_relative_path, destination_folder):
+        source_path = os.path.join(self.folder_path, source_relative_path)
+        destination_path = os.path.join(
+            destination_folder, os.path.basename(source_path)
+        )
+        shutil.copy(source_path, destination_path)
+
     def create_metadata_folder(self):
         print("Selecting names...")
         available_data = self._read_json(self.available_path)
@@ -57,6 +65,8 @@ class MetadataManager:
 
         self._move_terms(titles, "TITLES", "TITLES")
         self._move_terms([date], "DATES", "DATES")
+
+        self._copy_utility_file("utilities/copy_description.py", new_folder_path)
 
         return new_folder_path
 
