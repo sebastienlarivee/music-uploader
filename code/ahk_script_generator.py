@@ -10,12 +10,14 @@ class AHKScriptGenerator:
         self.title = ""
         self.tracks = []
         self.date = ""
+        self.artist_name = ""
 
     def read_metadata(self):
         """Reads the metadata.json file and extracts the TITLE, TRACKS, and DATE data."""
         try:
             with open(os.path.join(self.folder_path, self.metadata_file), "r") as file:
                 data = json.load(file)
+                self.artist_name = data.get("ARTIST", "")
                 self.title = data.get("TITLE", "")
                 self.tracks = data.get("TRACKS", [])
 
@@ -46,7 +48,7 @@ class AHKScriptGenerator:
         ahk_script_content += f"    Send, {len(self.tracks)}\n"
         ahk_script_content += "    Sleep, 2000\n"
         ahk_script_content += "    Send, {Tab 2}\n"
-        ahk_script_content += "    SendInput, Ambient Archive\n"  # Artist name
+        ahk_script_content += f"    SendInput, {self.artist_name}\n"  # Artist name
         ahk_script_content += "    Sleep, 2000\n"
         ahk_script_content += "    Send, {Tab 3}\n"
         ahk_script_content += f"    Send, {self.date[1]}\n"  # Month
@@ -93,8 +95,6 @@ class AHKScriptGenerator:
         self.read_metadata()
         self.generate_ahk_script()
 
-
-# Usage
-folder_path = r"resources\albums\Lunar Glow"  # Must send full folder path
-ahk_script_generator = AHKScriptGenerator(folder_path)
-ahk_script_generator.run()
+    # Usage
+    # ahk_script_generator = AHKScriptGenerator(folder_path)
+    # ahk_script_generator.run()

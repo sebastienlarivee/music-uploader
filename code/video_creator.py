@@ -36,7 +36,7 @@ class VideoCreator:
 
     def determine_output_path(self):
         return os.path.join(
-            self.folder_path, f"{os.path.basename(self.folder_path)}.mp4"
+            self.folder_path, f"{os.path.basename(self.folder_path)}_video.mp4"
         )
 
     def create_video(self):

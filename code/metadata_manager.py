@@ -4,10 +4,11 @@ import shutil
 
 
 class MetadataManager:
-    def __init__(self, folder_path):
+    def __init__(self, folder_path, artist_name):
         self.folder_path = folder_path
         self.available_path = os.path.join(folder_path, "available.json")
         self.used_path = os.path.join(folder_path, "used.json")
+        self.artist_name = artist_name
 
     def _read_json(self, file_path):
         with open(file_path, "r") as file:
@@ -55,6 +56,7 @@ class MetadataManager:
         )
 
         metadata = {
+            "ARTIST": f"{self.artist_name}",
             "TITLE": f"{titles[0]}",
             "TRACKS": roman_title_instances,
             "DATE": date,
@@ -66,7 +68,7 @@ class MetadataManager:
         self._move_terms(titles, "TITLES", "TITLES")
         self._move_terms([date], "DATES", "DATES")
 
-        self._copy_utility_file("utilities/copy_description.py", new_folder_path)
+        # self._copy_utility_file(r"utilities/copy_description.py", new_folder_path) NOT WORKING FOR SOME REASON
 
         return new_folder_path
 

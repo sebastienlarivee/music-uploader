@@ -8,5 +8,3 @@ webdriver/*
 !resources/albums/.gitkeep
 **/__pycache__/
 **/.DS_Store
-resources\used.json
-resources\available.json
