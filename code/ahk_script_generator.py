@@ -26,8 +26,9 @@ class AHKScriptGenerator:
                     parsed_date = datetime.strptime(date_str, "%Y-%m-%d")
                     self.date = [
                         parsed_date.strftime("%Y"),
-                        parsed_date.strftime("%B"),
-                        parsed_date.strftime("%d"),
+                        # str(int()) to remove zeroes as they break DistroKid
+                        str(int(parsed_date.strftime("%m"))),
+                        str(int(parsed_date.strftime("%d"))),
                     ]
                 else:
                     self.date = []
